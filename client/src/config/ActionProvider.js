@@ -4,6 +4,14 @@ class ActionProvider {
     this.setState = setStateFunc;
   }
 
+  handleListStations = () => {
+    const message = this.createChatBotMessage("getting all stations", {
+      widget: "stationList",
+    });
+
+    this.updateChatbotState(message);
+  };
+
   greet() {
     const greetingMessage = this.createChatBotMessage("Hi, friend!");
     this.updateChatbotState(greetingMessage);
