@@ -1,6 +1,7 @@
 import { createChatBotMessage } from "react-chatbot-kit";
 import StationsWidget from "../components/StationsWidget";
 import StationList from "../components/StationList";
+import TrainList from "../components/TrainList";
 
 const config = {
   initialMessages: [
@@ -20,6 +21,11 @@ const config = {
     {
       widgetName: "stationList",
       widgetFunc: (props) => <StationList {...props} />,
+      mapStateToProps: ["selectedStation"],
+    },
+    {
+      widgetName: "trainList",
+      widgetFunc: (props) => <TrainList {...props} />,
       mapStateToProps: ["selectedStation"],
     },
   ],

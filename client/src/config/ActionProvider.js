@@ -12,8 +12,21 @@ class ActionProvider {
     this.updateChatbotState(message);
   };
 
-  greet() {
-    const greetingMessage = this.createChatBotMessage("Hi, friend!");
+  handleTrainList = () => {
+    const message = this.createChatBotMessage(
+      "getting next 2 available trains",
+      {
+        widget: "trainList",
+      }
+    );
+
+    this.updateChatbotState(message);
+  };
+
+  displayMessage() {
+    const greetingMessage = this.createChatBotMessage(
+      "Sorry, I don't know how to answer that"
+    );
     this.updateChatbotState(greetingMessage);
   }
 

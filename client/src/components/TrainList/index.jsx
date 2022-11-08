@@ -1,26 +1,9 @@
 import React from "react";
-import "./StationList.css";
-import useStationList from "./useStationList";
+import "./TrainList.css";
+import { useTrainList } from "../../hooks";
 
-const StationList = (props) => {
-  const { loading, stationList, trainList, handleStationClick } =
-    useStationList();
-
-  const stations =
-    stationList.length > 0 &&
-    stationList.slice(0, 10).map((station) => {
-      return (
-        <li key={station.StationId[0]} className="list-item">
-          <div
-            className="list-item-name"
-            onClick={() => handleStationClick(station.StationDesc[0])}
-          >
-            {station.StationDesc[0]}
-          </div>
-        </li>
-      );
-    });
-
+const TrainList = (props) => {
+  const { trainList } = useTrainList(props.state.selectedStation);
   const trains =
     trainList.length > 0 ? (
       trainList.map((train) => {
@@ -48,16 +31,11 @@ const StationList = (props) => {
     ) : (
       <div>No trains are running in next 90 minutes!</div>
     );
-  if (!loading) {
-    return (
-      <>
-        <ul className="list">{stations}</ul>
-        {trains && <ul className="list">{trains}</ul>}
-      </>
-    );
+  if (trains) {
+    return <ul className="list">{trains}</ul>;
   } else {
     return <div>loading...</div>;
   }
 };
 
-export default StationList;
+export default TrainList;
